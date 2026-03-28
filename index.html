@@ -7,27 +7,35 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Hiragino Sans','Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;background:#f5f5f3;color:#1a1a1a;min-height:100vh}
-.app{max-width:900px;margin:0 auto;padding:1.5rem 1rem}
-
+.app{max-width:960px;margin:0 auto;padding:1.5rem 1rem}
 h1{font-size:18px;font-weight:600;margin-bottom:1.5rem;display:flex;align-items:center;gap:10px}
-h1 span{font-size:12px;font-weight:400;color:#888;background:#e8f5e9;color:#2e7d32;padding:3px 10px;border-radius:20px}
-
+h1 span{font-size:12px;font-weight:400;background:#e8f5e9;color:#2e7d32;padding:3px 10px;border-radius:20px}
 .tabs{display:flex;gap:4px;margin-bottom:1.5rem;border-bottom:1px solid #e0e0e0}
 .tab{padding:8px 18px;font-size:13px;cursor:pointer;border:none;background:none;color:#888;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .2s;font-family:inherit}
 .tab.active{color:#1a1a1a;border-bottom-color:#1a1a1a;font-weight:500}
 .tab:hover:not(.active){color:#1a1a1a}
 .panel{display:none}.panel.active{display:block}
-
 .sync-bar{background:#e8f5e9;border:1px solid #c8e6c9;border-radius:10px;padding:.75rem 1.25rem;margin-bottom:1.25rem;display:flex;align-items:center;gap:10px;font-size:13px;color:#2e7d32}
 .sync-dot{width:8px;height:8px;border-radius:50%;background:#4caf50;flex-shrink:0}
-
 .card{background:#fff;border:1px solid #e8e8e5;border-radius:12px;padding:1.25rem;margin-bottom:1rem}
-.upload-zone{border:2px dashed #d0d0cc;border-radius:10px;padding:2.5rem;text-align:center;cursor:pointer;transition:all .2s;background:#fafaf8;margin-bottom:1.25rem}
+
+.upload-zone{border:2px dashed #d0d0cc;border-radius:10px;padding:2rem;text-align:center;cursor:pointer;transition:all .2s;background:#fafaf8;margin-bottom:1rem}
 .upload-zone:hover,.upload-zone.drag{border-color:#999;background:#fff}
 .upload-zone strong{font-size:14px;color:#1a1a1a}
 .upload-zone p{font-size:13px;color:#888;margin-top:6px}
 input[type=file]{display:none}
-.preview-img{width:100%;max-height:200px;object-fit:contain;border-radius:8px;border:1px solid #e8e8e5;margin-bottom:1rem}
+
+.queue-list{display:flex;flex-direction:column;gap:8px;margin-bottom:1rem}
+.queue-item{background:#f5f5f3;border:1px solid #e0e0e0;border-radius:8px;padding:10px 14px;display:flex;align-items:center;gap:12px}
+.queue-thumb{width:48px;height:36px;object-fit:cover;border-radius:4px;border:1px solid #e0e0e0;flex-shrink:0}
+.queue-info{flex:1;min-width:0}
+.queue-name{font-size:13px;color:#1a1a1a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.queue-status{font-size:11px;margin-top:2px}
+.queue-status.reading{color:#e65100}
+.queue-status.done{color:#2e7d32}
+.queue-status.error{color:#c62828}
+.queue-remove{background:none;border:none;cursor:pointer;color:#bbb;font-size:16px;padding:0 4px}
+.queue-remove:hover{color:#c62828}
 
 .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:600px){.field-grid{grid-template-columns:1fr}}
@@ -65,10 +73,6 @@ input[type=file]{display:none}
 
 .avatar{width:40px;height:40px;border-radius:50%;background:#e3f2fd;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;color:#1565c0;flex-shrink:0}
 
-.loading{display:flex;align-items:center;gap:10px;padding:1.5rem;color:#888;font-size:13px}
-.spinner{width:18px;height:18px;border:2px solid #e0e0e0;border-top-color:#888;border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0}
-@keyframes spin{to{transform:rotate(360deg)}}
-
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.5rem}
 @media(max-width:600px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
 .stat{background:#fff;border:1px solid #e8e8e5;border-radius:10px;padding:1rem;text-align:center}
@@ -94,23 +98,22 @@ input[type=file]{display:none}
 
 .toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:#1a1a1a;color:#fff;padding:10px 20px;border-radius:20px;font-size:13px;z-index:300;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap}
 .toast.show{opacity:1}
-
 .card-header-row{display:flex;align-items:center;gap:10px;margin-bottom:1rem}
 .divider{border-top:1px solid #e8e8e5;padding-top:1rem;margin-top:.5rem}
 .note-input-row{display:flex;gap:8px;margin-top:.5rem}
 .note-input-row input{flex:1;background:#f5f5f3;border:1px solid #e0e0e0;border-radius:8px;padding:7px 10px;font-size:13px;color:#1a1a1a;font-family:inherit}
 .note-input-row input:focus{outline:none;border-color:#999;background:#fff}
+
+.form-section-title{font-size:13px;font-weight:500;color:#555;margin:1rem 0 .5rem;padding-bottom:.5rem;border-bottom:1px solid #f0f0f0}
 </style>
 </head>
 <body>
 <div class="app">
   <h1>名刺CRM <span>● スプレッドシート同期中</span></h1>
-
   <div class="sync-bar">
     <div class="sync-dot"></div>
     Googleスプレッドシートと同期が有効です。登録・更新・削除が自動で反映されます。
   </div>
-
   <div class="tabs">
     <button class="tab active" onclick="showTab('register',this)">名刺登録</button>
     <button class="tab" onclick="showTab('list',this)">顧客一覧</button>
@@ -128,16 +131,11 @@ input[type=file]{display:none}
           <circle cx="28" cy="26" r="7" fill="white" stroke="currentColor" stroke-width="1.5"/>
           <path d="M28 23v6M25 26l3-3 3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        <strong>名刺画像をここにドロップ</strong>
+        <strong>名刺画像をドロップ（複数枚対応）</strong>
         <p>またはクリックして選択（JPG / PNG）</p>
       </div>
-      <input type="file" id="file-input" accept="image/*" onchange="handleFile(event)">
-      <div id="preview-area" style="display:none">
-        <img id="preview-img" class="preview-img" alt="名刺プレビュー">
-        <div id="ocr-loading" class="loading" style="display:none">
-          <div class="spinner"></div>AIが名刺を読み取り中...
-        </div>
-      </div>
+      <input type="file" id="file-input" accept="image/*" multiple onchange="handleFiles(event)">
+      <div id="queue-list" class="queue-list" style="display:none"></div>
     </div>
 
     <div id="form-area" style="display:none">
@@ -149,6 +147,7 @@ input[type=file]{display:none}
             <div style="font-size:12px;color:#888;margin-top:2px">修正後に保存するとスプレッドシートに自動反映されます</div>
           </div>
         </div>
+        <div class="form-section-title">基本情報</div>
         <div class="field-grid">
           <div class="field"><label>会社名</label><input type="text" id="f-company" oninput="updateAvatar()"></div>
           <div class="field"><label>氏名</label><input type="text" id="f-name" oninput="updateAvatar()"></div>
@@ -156,6 +155,9 @@ input[type=file]{display:none}
           <div class="field"><label>メールアドレス</label><input type="email" id="f-email"></div>
           <div class="field"><label>電話番号</label><input type="tel" id="f-phone"></div>
           <div class="field"><label>Webサイト</label><input type="text" id="f-web"></div>
+        </div>
+        <div class="form-section-title">交流会情報</div>
+        <div class="field-grid">
           <div class="field"><label>名刺交換日</label><input type="date" id="f-date"></div>
           <div class="field"><label>交流会・場所</label><input type="text" id="f-event"></div>
           <div class="field full"><label>商談角度</label>
@@ -247,11 +249,12 @@ input[type=file]{display:none}
 <div class="toast" id="toast"></div>
 
 <script>
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbyTlvm0CFw55BX0-bvnhMAehqPdRPbol38I0tU3n0lQz92JaJXXOWEQi7irbv7EVjjn6g/exec';
-let contacts = JSON.parse(localStorage.getItem('meishi_crm_v3') || '[]');
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbx39r7EtWTgIPFOP-X-HKk1SEZHW-uW6Ddz1ATN6r_jxJFsMP7Q_yMnAb8viMLSPgE/exec';
+let contacts = JSON.parse(localStorage.getItem('meishi_crm_v5') || '[]');
 let currentId = null;
+let queue = []; // 複数枚処理用キュー
 
-function saveLocal(){localStorage.setItem('meishi_crm_v3',JSON.stringify(contacts))}
+function saveLocal(){localStorage.setItem('meishi_crm_v5',JSON.stringify(contacts))}
 
 function toast(msg,d=2500){
   const el=document.getElementById('toast');
@@ -275,44 +278,96 @@ function showTab(t,el){
 }
 
 function onDrag(e,on){e.preventDefault();document.getElementById('dropzone').classList.toggle('drag',on)}
-function onDrop(e){e.preventDefault();onDrag(e,false);const f=e.dataTransfer.files[0];if(f)processFile(f)}
-function handleFile(e){if(e.target.files[0])processFile(e.target.files[0])}
-
-function processFile(file){
-  const reader=new FileReader();
-  reader.onload=e=>{
-    document.getElementById('preview-img').src=e.target.result;
-    document.getElementById('preview-area').style.display='block';
-    document.getElementById('form-area').style.display='none';
-    runOCR(e.target.result,file.type);
-  };
-  reader.readAsDataURL(file);
+function onDrop(e){
+  e.preventDefault();onDrag(e,false);
+  const files=Array.from(e.dataTransfer.files).filter(f=>f.type.startsWith('image/'));
+  if(files.length)addToQueue(files);
+}
+function handleFiles(e){
+  const files=Array.from(e.target.files);
+  if(files.length)addToQueue(files);
 }
 
-async function runOCR(dataUrl,mimeType){
-  document.getElementById('ocr-loading').style.display='flex';
-  const base64=dataUrl.split(',')[1];
-  const mt=mimeType.startsWith('image/')?mimeType:'image/jpeg';
-  try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:800,
-        messages:[{role:'user',content:[
-          {type:'image',source:{type:'base64',media_type:mt,data:base64}},
-          {type:'text',text:'この名刺画像から情報を抽出し、以下のJSON形式のみで返答してください。マークダウン・説明不要。\n{"company":"","name":"","title":"","email":"","phone":"","website":""}'}
-        ]}]
-      })
-    });
-    const data=await res.json();
-    const text=data.content[0].text.replace(/```json|```/g,'').trim();
-    fillForm(JSON.parse(text));
-  }catch(e){fillForm({});toast('OCR失敗。手動で入力してください。')}
-  document.getElementById('ocr-loading').style.display='none';
+function addToQueue(files){
+  files.forEach(file=>{
+    const id=Date.now()+Math.random();
+    queue.push({id,file,status:'waiting',data:null});
+  });
+  renderQueue();
+  processQueue();
+}
+
+function renderQueue(){
+  const el=document.getElementById('queue-list');
+  if(!queue.length){el.style.display='none';return}
+  el.style.display='flex';
+  el.innerHTML=queue.map(item=>`
+    <div class="queue-item" id="qi-${item.id}">
+      <img class="queue-thumb" src="${item.thumb||''}" alt="">
+      <div class="queue-info">
+        <div class="queue-name">${item.file.name}</div>
+        <div class="queue-status ${item.status==='reading'?'reading':item.status==='done'?'done':item.status==='error'?'error':''}">
+          ${item.status==='waiting'?'待機中':item.status==='reading'?'読み取り中...':item.status==='done'?'✓ 読み取り完了':'✗ 読み取り失敗'}
+        </div>
+      </div>
+      ${item.status==='done'?`<button class="btn primary" style="font-size:12px;padding:5px 10px;white-space:nowrap" onclick="editQueueItem('${item.id}')">編集・保存</button>`:''}
+      <button class="queue-remove" onclick="removeFromQueue('${item.id}')">×</button>
+    </div>
+  `).join('');
+}
+
+async function processQueue(){
+  for(const item of queue){
+    if(item.status!=='waiting')continue;
+    item.status='reading';
+    renderQueue();
+    try{
+      const dataUrl=await readFile(item.file);
+      item.thumb=dataUrl;
+      const base64=dataUrl.split(',')[1];
+      const mt=item.file.type||'image/jpeg';
+      const res=await fetch('/.netlify/functions/ocr',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({imageData:base64,mimeType:mt})
+      });
+      const result=await res.json();
+      if(result.ok){
+        const text=result.data.replace(/```json|```/g,'').trim();
+        item.data=JSON.parse(text);
+        item.status='done';
+      }else{
+        item.status='error';
+      }
+    }catch(e){
+      item.status='error';
+    }
+    renderQueue();
+  }
+}
+
+function readFile(file){
+  return new Promise((resolve,reject)=>{
+    const reader=new FileReader();
+    reader.onload=e=>resolve(e.target.result);
+    reader.onerror=reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+function removeFromQueue(id){
+  queue=queue.filter(x=>String(x.id)!==String(id));
+  renderQueue();
+  if(!queue.length){document.getElementById('form-area').style.display='none'}
+}
+
+function editQueueItem(id){
+  const item=queue.find(x=>String(x.id)===String(id));
+  if(!item||!item.data)return;
+  fillForm(item.data);
   document.getElementById('form-area').style.display='block';
-  document.getElementById('f-date').value=new Date().toISOString().split('T')[0];
+  document.getElementById('form-area').scrollIntoView({behavior:'smooth'});
+  document.getElementById('form-area').dataset.queueId=id;
 }
 
 function fillForm(info){
@@ -322,6 +377,10 @@ function fillForm(info){
   document.getElementById('f-email').value=info.email||'';
   document.getElementById('f-phone').value=info.phone||'';
   document.getElementById('f-web').value=info.website||'';
+  document.getElementById('f-date').value=new Date().toISOString().split('T')[0];
+  document.getElementById('f-status').value='warm';
+  document.getElementById('f-memo').value='';
+  document.getElementById('f-action').value='';
   updateAvatar();
 }
 
@@ -364,11 +423,14 @@ async function saveContact(){
   saveLocal();
   btn.textContent='保存してスプレッドシートに同期 →';btn.disabled=false;
   toast(ok?`✓ 「${contact.name||contact.company}」を登録・同期しました`:'✓ 登録しました（同期エラー）');
+
+  // キューから削除
+  const qid=document.getElementById('form-area').dataset.queueId;
+  if(qid)removeFromQueue(qid);
   resetForm();
 }
 
 function resetForm(){
-  document.getElementById('preview-area').style.display='none';
   document.getElementById('form-area').style.display='none';
   document.getElementById('file-input').value='';
   ['f-company','f-name','f-title','f-email','f-phone','f-web','f-date','f-event','f-memo','f-action'].forEach(id=>document.getElementById(id).value='');
