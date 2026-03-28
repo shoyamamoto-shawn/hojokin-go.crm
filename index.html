@@ -18,13 +18,11 @@ h1 span{font-size:12px;font-weight:400;background:#e8f5e9;color:#2e7d32;padding:
 .sync-bar{background:#e8f5e9;border:1px solid #c8e6c9;border-radius:10px;padding:.75rem 1.25rem;margin-bottom:1.25rem;display:flex;align-items:center;gap:10px;font-size:13px;color:#2e7d32}
 .sync-dot{width:8px;height:8px;border-radius:50%;background:#4caf50;flex-shrink:0}
 .card{background:#fff;border:1px solid #e8e8e5;border-radius:12px;padding:1.25rem;margin-bottom:1rem}
-
 .upload-zone{border:2px dashed #d0d0cc;border-radius:10px;padding:2rem;text-align:center;cursor:pointer;transition:all .2s;background:#fafaf8;margin-bottom:1rem}
 .upload-zone:hover,.upload-zone.drag{border-color:#999;background:#fff}
 .upload-zone strong{font-size:14px;color:#1a1a1a}
 .upload-zone p{font-size:13px;color:#888;margin-top:6px}
 input[type=file]{display:none}
-
 .queue-list{display:flex;flex-direction:column;gap:8px;margin-bottom:1rem}
 .queue-item{background:#f5f5f3;border:1px solid #e0e0e0;border-radius:8px;padding:10px 14px;display:flex;align-items:center;gap:12px}
 .queue-thumb{width:48px;height:36px;object-fit:cover;border-radius:4px;border:1px solid #e0e0e0;flex-shrink:0}
@@ -36,7 +34,6 @@ input[type=file]{display:none}
 .queue-status.error{color:#c62828}
 .queue-remove{background:none;border:none;cursor:pointer;color:#bbb;font-size:16px;padding:0 4px}
 .queue-remove:hover{color:#c62828}
-
 .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:600px){.field-grid{grid-template-columns:1fr}}
 .field{display:flex;flex-direction:column;gap:4px}
@@ -44,7 +41,6 @@ input[type=file]{display:none}
 .field input,.field textarea,.field select{background:#f5f5f3;border:1px solid #e0e0e0;border-radius:8px;padding:8px 10px;font-size:13px;color:#1a1a1a;width:100%;font-family:inherit;resize:vertical;transition:border-color .15s}
 .field input:focus,.field textarea:focus,.field select:focus{outline:none;border-color:#999;background:#fff}
 .field.full{grid-column:1/-1}
-
 .btn{padding:8px 16px;border-radius:8px;border:1px solid #d0d0cc;background:#fff;font-size:13px;cursor:pointer;color:#1a1a1a;font-family:inherit;transition:all .15s}
 .btn:hover{background:#f5f5f3}
 .btn.primary{background:#1a1a1a;color:#fff;border-color:#1a1a1a}
@@ -53,7 +49,6 @@ input[type=file]{display:none}
 .btn.danger{color:#c62828;border-color:#ffcdd2}
 .btn.danger:hover{background:#ffebee}
 .btn-row{display:flex;gap:8px;justify-content:flex-end;margin-top:1rem}
-
 .badge{display:inline-block;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:500}
 .badge.hot{background:#ffebee;color:#c62828}
 .badge.warm{background:#fff8e1;color:#e65100}
@@ -63,39 +58,32 @@ input[type=file]{display:none}
 .sync-badge{display:inline-block;padding:2px 8px;border-radius:6px;font-size:11px}
 .sync-badge.ok{background:#e8f5e9;color:#2e7d32}
 .sync-badge.pending{background:#fff8e1;color:#e65100}
-
 .list-item{background:#fff;border:1px solid #e8e8e5;border-radius:12px;padding:1rem 1.25rem;margin-bottom:8px;cursor:pointer;transition:border-color .15s;display:flex;align-items:center;gap:12px}
 .list-item:hover{border-color:#bbb}
 .list-item .info{flex:1;min-width:0}
 .list-item .name{font-size:14px;font-weight:500}
 .list-item .meta{font-size:12px;color:#888;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .list-item .right{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0}
-
 .avatar{width:40px;height:40px;border-radius:50%;background:#e3f2fd;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;color:#1565c0;flex-shrink:0}
-
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:1.5rem}
 @media(max-width:600px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
 .stat{background:#fff;border:1px solid #e8e8e5;border-radius:10px;padding:1rem;text-align:center}
 .stat-num{font-size:24px;font-weight:600}
 .stat-label{font-size:11px;color:#888;margin-top:4px}
-
 .search-bar{display:flex;gap:8px;margin-bottom:1rem}
 .search-bar input{flex:1;background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:8px 12px;font-size:13px;color:#1a1a1a;font-family:inherit}
 .search-bar input:focus{outline:none;border-color:#999}
 .search-bar select{background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:8px 10px;font-size:13px;color:#1a1a1a;font-family:inherit}
-
 .overlay{display:none;position:fixed;inset:0;z-index:100;align-items:flex-start;justify-content:center;padding:2rem;overflow-y:auto}
 .overlay.open{display:flex}
 .overlay-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.4)}
 .modal{background:#fff;border:1px solid #e8e8e5;border-radius:14px;padding:1.5rem;width:100%;max-width:560px;position:relative;z-index:1;margin:auto}
 .modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
 .modal-title{font-size:16px;font-weight:500}
-
 .notes-list{display:flex;flex-direction:column;gap:8px;margin-top:1rem}
 .note-item{background:#f5f5f3;border-radius:8px;padding:10px 12px;font-size:13px}
 .note-meta{font-size:11px;color:#aaa;margin-top:4px}
 .empty{text-align:center;padding:3rem;color:#bbb;font-size:13px}
-
 .toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:#1a1a1a;color:#fff;padding:10px 20px;border-radius:20px;font-size:13px;z-index:300;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap}
 .toast.show{opacity:1}
 .card-header-row{display:flex;align-items:center;gap:10px;margin-bottom:1rem}
@@ -103,7 +91,6 @@ input[type=file]{display:none}
 .note-input-row{display:flex;gap:8px;margin-top:.5rem}
 .note-input-row input{flex:1;background:#f5f5f3;border:1px solid #e0e0e0;border-radius:8px;padding:7px 10px;font-size:13px;color:#1a1a1a;font-family:inherit}
 .note-input-row input:focus{outline:none;border-color:#999;background:#fff}
-
 .form-section-title{font-size:13px;font-weight:500;color:#555;margin:1rem 0 .5rem;padding-bottom:.5rem;border-bottom:1px solid #f0f0f0}
 </style>
 </head>
@@ -119,7 +106,6 @@ input[type=file]{display:none}
     <button class="tab" onclick="showTab('list',this)">顧客一覧</button>
   </div>
 
-  <!-- 登録パネル -->
   <div id="panel-register" class="panel active">
     <div class="card">
       <div class="upload-zone" id="dropzone"
@@ -132,7 +118,7 @@ input[type=file]{display:none}
           <path d="M28 23v6M25 26l3-3 3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         <strong>名刺画像をドロップ（複数枚対応）</strong>
-        <p>またはクリックして選択（JPG / PNG）</p>
+        <p>またはクリックして選択（JPG / PNG）· 自動圧縮対応</p>
       </div>
       <input type="file" id="file-input" accept="image/*" multiple onchange="handleFiles(event)">
       <div id="queue-list" class="queue-list" style="display:none"></div>
@@ -184,7 +170,6 @@ input[type=file]{display:none}
     </div>
   </div>
 
-  <!-- 一覧パネル -->
   <div id="panel-list" class="panel">
     <div class="stats-grid">
       <div class="stat"><div class="stat-num" id="s-total">0</div><div class="stat-label">総顧客数</div></div>
@@ -207,7 +192,6 @@ input[type=file]{display:none}
   </div>
 </div>
 
-<!-- 詳細モーダル -->
 <div class="overlay" id="detail-overlay">
   <div class="overlay-backdrop" onclick="closeDetail()"></div>
   <div class="modal">
@@ -250,9 +234,12 @@ input[type=file]{display:none}
 
 <script>
 const GAS_URL = 'https://script.google.com/macros/s/AKfycbx39r7EtWTgIPFOP-X-HKk1SEZHW-uW6Ddz1ATN6r_jxJFsMP7Q_yMnAb8viMLSPgE/exec';
+const MAX_SIZE = 4 * 1024 * 1024; // 4MB上限
+const MAX_WIDTH = 1600;
+
 let contacts = JSON.parse(localStorage.getItem('meishi_crm_v5') || '[]');
 let currentId = null;
-let queue = []; // 複数枚処理用キュー
+let queue = [];
 
 function saveLocal(){localStorage.setItem('meishi_crm_v5',JSON.stringify(contacts))}
 
@@ -267,6 +254,32 @@ async function syncGas(payload){
     await fetch(GAS_URL,{method:'POST',body:JSON.stringify(payload),mode:'no-cors'});
     return true;
   }catch(e){return false}
+}
+
+// 画像を自動圧縮してbase64を返す
+function compressImage(file){
+  return new Promise((resolve)=>{
+    const img=new Image();
+    const url=URL.createObjectURL(file);
+    img.onload=()=>{
+      URL.revokeObjectURL(url);
+      let w=img.width, h=img.height;
+      if(w>MAX_WIDTH){h=Math.round(h*MAX_WIDTH/w);w=MAX_WIDTH;}
+      const canvas=document.createElement('canvas');
+      canvas.width=w;canvas.height=h;
+      const ctx=canvas.getContext('2d');
+      ctx.drawImage(img,0,0,w,h);
+      // 品質を下げながら4MB以内に収める
+      let quality=0.85;
+      let dataUrl=canvas.toDataURL('image/jpeg',quality);
+      while(dataUrl.length*0.75>MAX_SIZE && quality>0.3){
+        quality-=0.1;
+        dataUrl=canvas.toDataURL('image/jpeg',quality);
+      }
+      resolve(dataUrl);
+    };
+    img.src=url;
+  });
 }
 
 function showTab(t,el){
@@ -291,7 +304,7 @@ function handleFiles(e){
 function addToQueue(files){
   files.forEach(file=>{
     const id=Date.now()+Math.random();
-    queue.push({id,file,status:'waiting',data:null});
+    queue.push({id,file,status:'waiting',data:null,thumb:null});
   });
   renderQueue();
   processQueue();
@@ -303,7 +316,7 @@ function renderQueue(){
   el.style.display='flex';
   el.innerHTML=queue.map(item=>`
     <div class="queue-item" id="qi-${item.id}">
-      <img class="queue-thumb" src="${item.thumb||''}" alt="">
+      ${item.thumb?`<img class="queue-thumb" src="${item.thumb}" alt="">`:'<div class="queue-thumb" style="background:#e0e0e0;border-radius:4px"></div>'}
       <div class="queue-info">
         <div class="queue-name">${item.file.name}</div>
         <div class="queue-status ${item.status==='reading'?'reading':item.status==='done'?'done':item.status==='error'?'error':''}">
@@ -322,14 +335,14 @@ async function processQueue(){
     item.status='reading';
     renderQueue();
     try{
-      const dataUrl=await readFile(item.file);
+      // 自動圧縮
+      const dataUrl=await compressImage(item.file);
       item.thumb=dataUrl;
       const base64=dataUrl.split(',')[1];
-      const mt=item.file.type||'image/jpeg';
       const res=await fetch('/.netlify/functions/ocr',{
         method:'POST',
         headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({imageData:base64,mimeType:mt})
+        body:JSON.stringify({imageData:base64,mimeType:'image/jpeg'})
       });
       const result=await res.json();
       if(result.ok){
@@ -346,19 +359,10 @@ async function processQueue(){
   }
 }
 
-function readFile(file){
-  return new Promise((resolve,reject)=>{
-    const reader=new FileReader();
-    reader.onload=e=>resolve(e.target.result);
-    reader.onerror=reject;
-    reader.readAsDataURL(file);
-  });
-}
-
 function removeFromQueue(id){
   queue=queue.filter(x=>String(x.id)!==String(id));
   renderQueue();
-  if(!queue.length){document.getElementById('form-area').style.display='none'}
+  if(!queue.length)document.getElementById('form-area').style.display='none';
 }
 
 function editQueueItem(id){
@@ -423,8 +427,6 @@ async function saveContact(){
   saveLocal();
   btn.textContent='保存してスプレッドシートに同期 →';btn.disabled=false;
   toast(ok?`✓ 「${contact.name||contact.company}」を登録・同期しました`:'✓ 登録しました（同期エラー）');
-
-  // キューから削除
   const qid=document.getElementById('form-area').dataset.queueId;
   if(qid)removeFromQueue(qid);
   resetForm();
